@@ -1,22 +1,25 @@
 const express = require('express')
+const colors = require('colors')
 const dotenv = require('dotenv').config()
 const app = express()
 const { errorHandler } = require('./middleware/errorMiddleware')
+const connectDB = require('./config/db')
 
+
+// connect to mongo
+connectDB()
 
 // add middleware
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 
-
-
+// main routes 
 app.use('/api/inventory', require('./routes/inventoryRoutes.js'))
 
 
-
+// overwrite default express error
 app.use(errorHandler)
-
 
 
 
