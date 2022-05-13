@@ -53,7 +53,6 @@ const deleteInventoryItem = asyncHandler (async (req, res) => {
 
 
 
-
 module.exports = {
     getInventoryItem,
     createInventoryItem,
