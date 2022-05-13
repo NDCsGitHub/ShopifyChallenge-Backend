@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import React from 'react'
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -41,14 +42,12 @@ export default function DashBoard() {
       {(()=>{
 
             switch(sidemenuState){
-
                 case 'Warehouses':
                     return <h1>this is warehouse panel</h1>
                 case 'All Items':
                     return <h1>All items </h1>
                 case 'AddItems':
                     return <h1>Add items </h1>
-
             }
 
         })()}
@@ -58,3 +57,7 @@ export default function DashBoard() {
   </Box>
   )
 }
+
+
+
+
