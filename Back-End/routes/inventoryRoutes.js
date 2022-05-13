@@ -4,8 +4,8 @@ const { getInventoryItem, createInventoryItem, updateInventoryItem, deleteInvent
 
 
 
+// routes for inventory, it takes in inventoryControllers as its controllers
 router.route('/').get(getInventoryItem).post(createInventoryItem)
-
 router.route('/:id').put(updateInventoryItem).delete(deleteInventoryItem)
 
 
