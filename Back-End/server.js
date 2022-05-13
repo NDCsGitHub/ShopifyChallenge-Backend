@@ -6,11 +6,7 @@ const app = express()
 
 
 
-
-
-app.get('/api/inventory', (req,res) => {
-    res.send('get inventory')
-})
+app.use('/api/inventory', require('./routes/inventoryRoutes.js'))
 
 
 
