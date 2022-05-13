@@ -17,17 +17,28 @@ const getInventoryItem = asyncHandler (async (req, res) => {
 //@route POST /api/inventory
 //@access public
 const createInventoryItem = asyncHandler (async (req,res) => {
-    if(!req.body.Item_Name){
-        res.status(400)
-        throw new Error('Please add a text field')
+
+    // if any of the fields are empty, return error message
+    if(!req.body.Item_Name || !req.body.Quantity || !req.body.Item_Description){
+        res.send({
+            error:true,
+            message: 'please make sure all fields are completed',
+        })
+        throw new Error('Please Make Sure All Fields Are Complete')
     }
 
+    
     const inventory  = await Inventory.create({
-        Item_Name:req.body.Item_Name
+        Item_Name:req.body.Item_Name,
+        Quantity:req.body.Quantity,
+        Item_Description:req.body.Item_Description,
     })
 
-
-    res.status(200).json(inventory)
+    res.status(200).json({
+        error:false,
+        message:'Item Added!',
+        inventory: inventory
+    })
 })
 
 

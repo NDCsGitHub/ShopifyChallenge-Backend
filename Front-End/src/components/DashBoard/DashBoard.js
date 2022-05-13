@@ -6,8 +6,7 @@ import Headerbar from './components/HeaderBar/HeaderBar';
 import Sidemenu from './components/Sidemenu/Sidemenu';
 import { styled } from '@mui/material/styles';
 import {useDashboardContext} from '../../contexts/DashboardContext'
-
-
+import AddItem from '../AddItem/AddItem'
 
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -31,9 +30,7 @@ export default function DashBoard() {
     <Box sx={{ display: 'flex' }}>
     <CssBaseline />
 
-
       <Headerbar/>
-
       <Sidemenu/>
 
     <Box component="main" sx={{ flexGrow: 1, p: 3, background:'rgb(246, 235, 235)', height:"100vh" }}>
@@ -47,7 +44,12 @@ export default function DashBoard() {
                 case 'All Items':
                     return <h1>All items </h1>
                 case 'AddItems':
-                    return <h1>Add items </h1>
+                    return (
+                      <div>
+                        <AddItem/>
+                      </div>
+                     
+                    )
             }
 
         })()}
