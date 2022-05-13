@@ -45,6 +45,7 @@ export default function AddItem() {
 
             })
             
+            
         // addd check for error
         console.log(resp.data)
     }catch(error){
