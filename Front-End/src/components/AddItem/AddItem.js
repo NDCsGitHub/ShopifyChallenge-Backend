@@ -46,6 +46,7 @@ export default function AddItem() {
             })
         
         alert(resp.data.message)
+
         setItemInfo({
             Item_Name:'',
             Quantity:'',

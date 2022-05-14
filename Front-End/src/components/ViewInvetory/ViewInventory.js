@@ -5,8 +5,8 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
-
-
+import Paper from '@mui/material/Paper';
+import Divider from '@mui/material/Divider';
 
 
 export default function ViewInventory() {
@@ -15,7 +15,6 @@ export default function ViewInventory() {
   const [inventory, setInventory] = useState([])
 
   const getInventoryItems = async () => {
-    
     try{
         const items = await axios.get('http://localhost:5000/api/inventory',
         {
@@ -23,45 +22,100 @@ export default function ViewInventory() {
                 'Content-Type':'application/x-www-form-urlencoded',
             }
         })
-
-        console.log(items.data)
-
+        setInventory([
+            ...items.data
+        ])
     }catch(error){
         alert(error.response.data.message)
     }
-
   }
+
+
+  const deleteItem = async (id) => {
+      try{
+        const deleteResp = await axios.delete(`http://localhost:5000/api/inventory/${id}`,
+        {
+            headers:{
+                'Content-Type':'application/x-www-form-urlencoded',
+                'Access-Control-Allow-Origin':'*',
+            }
+        })
+
+        alert(`Item ID: ${deleteResp.data.id} removed!`)
+        setInventory([
+            ...deleteResp.data.newList
+        ])
+        
+      }catch(error){
+        alert(error.response.data.message)        
+      }
+  }
+
 
 
   useEffect(()=>{
     getInventoryItems()
   },[])
 
-  useEffect(()=>{
-      console.log(inventory)
-  },[inventory])
 
   return (
+    <Paper style={{maxHeight: 700, overflow: 'auto', display:'flex', flexDirection:'row', flexWrap:'wrap'}}>
+
+        {inventory.map((item, index) => {
+            return (
+                <Card sx={{ minWidth: 345, margin:'0.5rem' }}>
+                    <CardContent>
+            
+                    <Typography style={{margin:'5px',}}  variant="subtitle2" component="div">
+                        Item Name: {item.Item_Name}
+                    </Typography>
+
+                    <Divider/>
+            
+                    <Typography style={{margin:'5px'}}   variant="body2" color="text.secondary">
+                        Quantity: {item.Quantity}
+                    </Typography>
+
+                    <Divider/>
+
+                    <Typography style={{margin:'5px'}} variant="body2" color="text.secondary">
+                        Description: {item.Item_Description}
+                    </Typography>
+
+
+                    </CardContent>
+            
+                    <CardActions>
+                        <Button size="small">Edit</Button>
 
 
 
-    <Card sx={{ maxWidth: 345 }}>
-      <CardContent>
+                        <Button 
+                            size="small" 
+                            onClick={() => {
+                                deleteItem(item._id)
+                            }}
+                        >
 
-        <Typography gutterBottom variant="h5" component="div">
-            Item Name
-        </Typography>
+                            Delete
+                        </Button>
 
-        <Typography variant="body2" color="text.secondary">
-          Item Quantity
-        </Typography>
 
-      </CardContent>
 
-      <CardActions>
-        <Button size="small">Edit</Button>
-        <Button size="small">Delete</Button>
-      </CardActions>
-    </Card>
+                    </CardActions>
+                </Card>
+
+            )
+
+
+
+        })}
+    
+
+
+    
+    </Paper>
+
+
   )
 }

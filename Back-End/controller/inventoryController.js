@@ -67,15 +67,21 @@ const updateInventoryItem = asyncHandler (async (req, res) => {
 //@access public
 const deleteInventoryItem = asyncHandler (async (req, res) => {
 
+    // if id is not found, throw error
     const inventory = await Inventory.findById(req.params.id)
     if(!inventory){
         res.status(400)
         throw new Error('Item Not Found')
     }
 
+    // if if is found, remove the item, and also return the new list so front end can rerender
     await inventory.remove()
+    const newInventory = await Inventory.find()
 
-    res.status(200).json({id:req.params.id})
+    res.status(200).json({
+        id:req.params.id,
+        newList:newInventory
+    })
 })
 
 
