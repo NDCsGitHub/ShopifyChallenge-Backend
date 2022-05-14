@@ -20,10 +20,7 @@ const createInventoryItem = asyncHandler (async (req,res) => {
 
     // if any of the fields are empty, return error message
     if(!req.body.Item_Name || !req.body.Quantity || !req.body.Item_Description){
-        res.send({
-            error:true,
-            message: 'please make sure all fields are completed',
-        })
+        res.status(400)
         throw new Error('Please Make Sure All Fields Are Complete')
     }
 
@@ -35,7 +32,6 @@ const createInventoryItem = asyncHandler (async (req,res) => {
     })
 
     res.status(200).json({
-        error:false,
         message:'Item Added!',
         inventory: inventory
     })

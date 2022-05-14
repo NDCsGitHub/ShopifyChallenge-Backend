@@ -17,7 +17,7 @@ export default function AddItem() {
   const [itemInfo, setItemInfo] = useState({
       Item_Name:'',
       Quantity:'',
-      Item_Desccription:'',
+      Item_Description:'',
   })
 
   function handleItemInfo(e){
@@ -44,12 +44,16 @@ export default function AddItem() {
                 }
 
             })
-            
-            
-        // addd check for error
-        console.log(resp.data)
+        
+        alert(resp.data.message)
+        setItemInfo({
+            Item_Name:'',
+            Quantity:'',
+            Item_Description:'',
+        })
+
     }catch(error){
-        console.log(error)
+        alert(error.response.data.message)
     }
 
 
@@ -64,6 +68,7 @@ export default function AddItem() {
                 label="Item Name"
                 name='Item_Name' 
                 variant="outlined" 
+                value={itemInfo.Item_Name}
                 onChange={(e)=>{
                     handleItemInfo(e)
                 }}
@@ -74,6 +79,7 @@ export default function AddItem() {
                 label="Quanity" 
                 name="Quantity"
                 variant="outlined"
+                value={itemInfo.Quantity}
                 onChange={(e)=>{
                     handleItemInfo(e)
                 }} 
@@ -84,6 +90,7 @@ export default function AddItem() {
                 label="Item Description" 
                 name='Item_Description'
                 variant="outlined" 
+                value = {itemInfo.Item_Description}
                 onChange={(e)=>{
                     handleItemInfo(e)
                 }}

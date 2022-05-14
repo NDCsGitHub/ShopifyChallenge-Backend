@@ -7,7 +7,7 @@ import Sidemenu from './components/Sidemenu/Sidemenu';
 import { styled } from '@mui/material/styles';
 import {useDashboardContext} from '../../contexts/DashboardContext'
 import AddItem from '../AddItem/AddItem'
-
+import ViewInventory from '../ViewInvetory/ViewInventory';
 
 const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
@@ -42,7 +42,7 @@ export default function DashBoard() {
                 case 'Warehouses':
                     return <h1>this is warehouse panel</h1>
                 case 'All Items':
-                    return <h1>All items </h1>
+                    return <ViewInventory/>
                 case 'AddItems':
                     return (
                       <div>
