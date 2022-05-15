@@ -1,13 +1,13 @@
 const asyncHandler = require('express-async-handler')
-const Inventory = require('../Model/inventoryModel')
+const {Inventory, DeletedItems } = require('../Model/inventoryModel')
 
 //@desc GET inventory items
 //@route GET/api/inventory
 //@access public
 const getInventoryItem = asyncHandler (async (req, res) => {
 
+    //Get all items in inventory collection
     const inventory = await Inventory.find()
-
     res.status(200).json(inventory)
 
 })
@@ -18,13 +18,18 @@ const getInventoryItem = asyncHandler (async (req, res) => {
 //@access public
 const createInventoryItem = asyncHandler (async (req,res) => {
 
-    // if any of the fields are empty, return error message
+    // Condition: IF ANY OF THE FIELDS ARE EMPTY
+    // 1. send status code 400
+    // 2. throw error message
     if(!req.body.Item_Name || !req.body.Quantity || !req.body.Item_Description){
         res.status(400)
         throw new Error('Please Make Sure All Fields Are Complete')
     }
 
     
+    // Condition: Default
+    // 1. Creat new item in Invetory collection
+    // 2. return the newly added item
     const inventory  = await Inventory.create({
         Item_Name:req.body.Item_Name,
         Quantity:req.body.Quantity,
@@ -72,20 +77,43 @@ const updateInventoryItem = asyncHandler (async (req, res) => {
 //@access public
 const deleteInventoryItem = asyncHandler (async (req, res) => {
 
-    // if id is not found, throw error
+
+    // Condition: IF ID IS NOT FOUND
+    // 1. send status code 400
+    // 2. throw error message
     const inventory = await Inventory.findById(req.params.id)
     if(!inventory){
         res.status(400)
         throw new Error('Item Not Found')
     }
 
-    // if if is found, remove the item, and also return the new list so front end can rerender
+    // Condition: IF DELETE COMMENT IS MISSING
+    // 1. send status code 400
+    // 2. throw error message
+    if(!req.body.Delete_Comments){
+        res.status(400)
+        throw new Error('Please make sure Deleted Comments are filled out')
+    }
+
+
+
+    // Condition: IF ID IS FOUND
+    // 1. add deleted item in the DeletedItems Collection in the database
+    // 2. remove the item from the Inventory Collection in the database
+    // 3. return the new list so front end can rerender
+    const itemDeleted =  await DeletedItems.create({
+        inventory,
+        Delete_Comments:req.body.Delete_Comments,
+    })
+
     await inventory.remove()
+
     const newInventory = await Inventory.find()
 
     res.status(200).json({
         id:req.params.id,
-        newList:newInventory
+        newList:newInventory,
+        itemDeleted: itemDeleted,
     })
 })
 

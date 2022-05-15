@@ -40,7 +40,7 @@ export default function ViewInventory() {
                 'Access-Control-Allow-Origin':'*',
             }
         })
-        alert(`Item ID: ${deleteResp.data.id} removed!`)
+        alert(`Item ID: ${deleteResp.data.itemDeleted} removed!`)
         setInventory([
             ...deleteResp.data.newList
         ])

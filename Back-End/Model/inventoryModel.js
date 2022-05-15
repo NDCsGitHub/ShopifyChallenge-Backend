@@ -1,5 +1,17 @@
 const mongoose = require('mongoose')
 
+
+
+const deleteSchema = mongoose.Schema({
+    Delete_Comments:{
+        type:String,
+        required:[true, 'please remember to add delete comments']
+    },
+},{
+    timestamps:true
+})
+
+
 const inventorySchema = mongoose.Schema({
     Item_Name:{
         type:String,
@@ -13,9 +25,17 @@ const inventorySchema = mongoose.Schema({
         type:String,
         required:[true, 'please add Item Description']
     },
-
+    Delete:[deleteSchema]
 }, {
     timestamps:true,
 })
 
-module.exports = mongoose.model('Inventories', inventorySchema)
+
+
+const InventoriesModel = mongoose.model('Inventories', inventorySchema)
+const DeletedItemsModel = mongoose.model('DeletedItems', inventorySchema)
+
+module.exports = {
+    Inventory: InventoriesModel,
+    DeletedItems: DeletedItemsModel,
+}
