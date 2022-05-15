@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import Paper from '@mui/material/Paper';
 import Divider from '@mui/material/Divider';
-
+import EditMenu from '../EditMenu/EditMenu'
 
 export default function ViewInventory() {
 
@@ -49,13 +49,14 @@ export default function ViewInventory() {
       }
   }
 
-  
-
-
   useEffect(()=>{
     getInventoryItems()
   },[])
 
+
+  //model controller
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
 
   return (
     <Paper style={{maxHeight: 700, overflow: 'auto', display:'flex', flexDirection:'row', flexWrap:'wrap'}}>
@@ -85,7 +86,7 @@ export default function ViewInventory() {
                     </CardContent>
             
                     <CardActions>
-                        <Button size="small">Edit</Button>
+                        <Button size="small" onClick={()=>{handleOpen()}}>Edit</Button>
 
 
 
@@ -98,10 +99,11 @@ export default function ViewInventory() {
 
                             Delete
                         </Button>
-
-
-
                     </CardActions>
+
+                    <EditMenu open={open} setModel={setOpen} />
+
+
                 </Card>
 
             )
