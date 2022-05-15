@@ -8,11 +8,14 @@ import axios from 'axios';
 import Paper from '@mui/material/Paper';
 import Divider from '@mui/material/Divider';
 import EditMenu from '../EditMenu/EditMenu'
+import DeleteMenu from '../DeleteMenu/DeleteMenu'
+
+
 
 export default function ViewInventory() {
 
-
   const [inventory, setInventory] = useState([])
+
 
   const getInventoryItems = async () => {
     try{
@@ -30,36 +33,26 @@ export default function ViewInventory() {
     }
   }
 
-
-  const deleteItem = async (id) => {
-      try{
-        const deleteResp = await axios.delete(`http://localhost:5000/api/inventory/${id}`,
-        {
-            headers:{
-                'Content-Type':'application/x-www-form-urlencoded',
-                'Access-Control-Allow-Origin':'*',
-            }
-        })
-        alert(`Item ID: ${deleteResp.data.itemDeleted} removed!`)
-        setInventory([
-            ...deleteResp.data.newList
-        ])
-      }catch(error){
-        alert(error.response.data.message)        
-      }
-  }
-
   useEffect(()=>{
     getInventoryItems()
   },[])
 
 
-  //model controller
+  //model controller Edit
   const [open, setOpen] = React.useState(false);
   const [modelInfo, setModelInfo] = useState([])
   const handleOpen = (item) => {
       setOpen(true);
       setModelInfo(item)
+  }
+
+  //model controller Delete
+  const [openDelete, setOpenDelete] = useState(false)
+  const [modelInfoDelete, setModelInfoDelete] = useState([])
+
+  const handleOpenDelete = (item) => {
+      setOpenDelete(true);
+      setModelInfoDelete(item)
   }
 
 
@@ -69,9 +62,11 @@ export default function ViewInventory() {
 
         <EditMenu open={open} setModel={setOpen}  modelInfo={modelInfo} setNewList = {setInventory}/>
 
+        <DeleteMenu open={openDelete} setModel={setOpenDelete}  modelInfo={modelInfoDelete} setNewList = {setInventory}/>
+
         {inventory.map((item, index) => {
             return (
-                <Card sx={{ minWidth: 345, margin:'0.5rem' }}>
+                <Card sx={{ minWidth: 345, margin:'0.5rem' }} key={index}>
 
                     <CardContent>
             
@@ -96,18 +91,7 @@ export default function ViewInventory() {
             
                     <CardActions>
                         <Button size="small" onClick={()=>{handleOpen(item)}}>Edit</Button>
-
-
-
-                        <Button 
-                            size="small" 
-                            onClick={() => {
-                                deleteItem(item._id)
-                            }}
-                        >
-
-                            Delete
-                        </Button>
+                        <Button size="small" onClick={() =>{handleOpenDelete(item)}}>Delete</Button>
                     </CardActions>
 
                     

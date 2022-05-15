@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler')
-const {Inventory, DeletedItems } = require('../Model/inventoryModel')
+const {Inventory} = require('../Model/inventoryModel')
+const {DeletedItems} = require('../Model/deleteModel')
 
 //@desc GET inventory items
 //@route GET/api/inventory
@@ -102,7 +103,9 @@ const deleteInventoryItem = asyncHandler (async (req, res) => {
     // 2. remove the item from the Inventory Collection in the database
     // 3. return the new list so front end can rerender
     const itemDeleted =  await DeletedItems.create({
-        inventory,
+        Item_Name:req.body.Item_Name,
+        Quantity:req.body.Quantity,
+        Item_Description:req.body.Item_Description,
         Delete_Comments:req.body.Delete_Comments,
     })
 
