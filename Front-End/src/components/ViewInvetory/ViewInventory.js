@@ -67,12 +67,12 @@ export default function ViewInventory() {
   return (
     <Paper style={{maxHeight: 700, overflow: 'auto', display:'flex', flexDirection:'row', flexWrap:'wrap'}}>
 
+        <EditMenu open={open} setModel={setOpen}  modelInfo={modelInfo} setNewList = {setInventory}/>
+
         {inventory.map((item, index) => {
             return (
                 <Card sx={{ minWidth: 345, margin:'0.5rem' }}>
 
-                    <EditMenu open={open} setModel={setOpen} item={item} modelInfo={modelInfo} setNewList = {setInventory}/>
-                    
                     <CardContent>
             
                     <Typography style={{margin:'5px',}}  variant="subtitle2" component="div">
