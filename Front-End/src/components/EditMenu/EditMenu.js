@@ -27,9 +27,9 @@ export default function EditMenu({ open, setModel, modelInfo, setNewList}) {
 
 
     const [newItemInfo, setNewItemInfo] = useState({
-        Item_Name:modelInfo.Item_Name,
-        Quantity:modelInfo.Quantity,
-        Item_Description:modelInfo.Item_Description,
+        Item_Name:'',
+        Quantity:'',
+        Item_Description:'',
     })
   
     function handleItemInfo(e){
@@ -74,8 +74,12 @@ export default function EditMenu({ open, setModel, modelInfo, setNewList}) {
 
 
     useEffect(()=>{
-        console.log(newItemInfo)
-    },[newItemInfo])
+        setNewItemInfo({
+            Item_Name:modelInfo.Item_Name,
+            Quantity:modelInfo.Quantity,
+            Item_Description:modelInfo.Item_Description,
+        })
+    },[open])
 
 
   return (
