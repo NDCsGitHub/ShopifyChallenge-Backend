@@ -43,14 +43,14 @@ const createInventoryItem = asyncHandler (async (req,res) => {
 //@access public
 const updateInventoryItem = asyncHandler (async (req, res) => {
 
-    //find if item in inventroy exists
+    //find if item in inventroy doesnt exist
     const inventory = await Inventory.findById(req.params.id)
     if(!inventory){
         res.status(400)
         throw new Error('Item Not Found')
     }
 
-    // if inventory Item exists then update inventory
+    // if inventory Item exists then update inventory, and also return new list to update frontend render
     const updatedInventory = await Inventory.findByIdAndUpdate(
             req.params.id, 
             req.body,
@@ -58,7 +58,12 @@ const updateInventoryItem = asyncHandler (async (req, res) => {
                 new:true,
             }
         )
-    res.status(200).json(updatedInventory)
+
+    const newInventory = await Inventory.find()    
+    res.status(200).json({
+        newList:newInventory,
+        updatedItem:updatedInventory
+    })
 })
 
 

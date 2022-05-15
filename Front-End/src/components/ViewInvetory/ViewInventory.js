@@ -56,7 +56,13 @@ export default function ViewInventory() {
 
   //model controller
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const [modelInfo, setModelInfo] = useState([])
+  const handleOpen = (item) => {
+      setOpen(true);
+      setModelInfo(item)
+  }
+
+
 
   return (
     <Paper style={{maxHeight: 700, overflow: 'auto', display:'flex', flexDirection:'row', flexWrap:'wrap'}}>
@@ -64,6 +70,9 @@ export default function ViewInventory() {
         {inventory.map((item, index) => {
             return (
                 <Card sx={{ minWidth: 345, margin:'0.5rem' }}>
+
+                    <EditMenu open={open} setModel={setOpen} item={item} modelInfo={modelInfo} setNewList = {setInventory}/>
+                    
                     <CardContent>
             
                     <Typography style={{margin:'5px',}}  variant="subtitle2" component="div">
@@ -86,7 +95,7 @@ export default function ViewInventory() {
                     </CardContent>
             
                     <CardActions>
-                        <Button size="small" onClick={()=>{handleOpen()}}>Edit</Button>
+                        <Button size="small" onClick={()=>{handleOpen(item)}}>Edit</Button>
 
 
 
@@ -101,7 +110,7 @@ export default function ViewInventory() {
                         </Button>
                     </CardActions>
 
-                    <EditMenu open={open} setModel={setOpen} />
+                    
 
 
                 </Card>
