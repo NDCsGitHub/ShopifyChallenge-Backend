@@ -21,7 +21,7 @@ const deleteSchema = mongoose.Schema({
     timestamps:true
 })
 
-const DeletedItemsModel = mongoose.model('DeletedItems', deleteSchema)
+const DeletedItemsModel = mongoose.model('deleteditems', deleteSchema)
 
 module.exports = {
     DeletedItems: DeletedItemsModel,

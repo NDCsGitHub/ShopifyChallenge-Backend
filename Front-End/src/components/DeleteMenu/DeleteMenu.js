@@ -46,7 +46,7 @@ export default function DeleteMenu({ open, setModel, modelInfo, setNewList}) {
               }
           })
 
-          alert(`Item ID:${deleteResp.data.id} removed! ------Item Info:${deleteResp.data.itemDeleted}`)
+          alert(`Item ID:${deleteResp.data.id} removed! ------Item Info:${JSON.stringify(deleteResp.data.itemDeleted)}`)
           
 
           setNewList([
