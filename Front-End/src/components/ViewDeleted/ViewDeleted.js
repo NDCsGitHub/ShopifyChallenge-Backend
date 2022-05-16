@@ -61,6 +61,11 @@ export default function ViewInventory() {
                         Description: {item.Item_Description}
                     </Typography>
 
+                    <Divider/>
+
+                    <Typography style={{margin:'5px'}} variant="body2" color="text.secondary">
+                        Reason for Delete: {item.Delete_Comments}
+                    </Typography>
 
                     </CardContent>
             
