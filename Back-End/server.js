@@ -16,8 +16,11 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 
-// main routes
+// inventory routes
 app.use('/api/inventory', require('./routes/inventoryRoutes.js'))
+
+// deleted routes
+app.use('/api/deleteditems', require('./routes/deletedItemsRoute.js'))
 
 
 // overwrite default express error

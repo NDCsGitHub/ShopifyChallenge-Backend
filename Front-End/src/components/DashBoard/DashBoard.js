@@ -8,6 +8,7 @@ import { styled } from '@mui/material/styles';
 import {useDashboardContext} from '../../contexts/DashboardContext'
 import AddItem from '../AddItem/AddItem'
 import ViewInventory from '../ViewInvetory/ViewInventory';
+import ViewDeleted from '../ViewDeleted/ViewDeleted'
 
 const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
@@ -48,8 +49,14 @@ export default function DashBoard() {
                       <div>
                         <AddItem/>
                       </div>
-                     
                     )
+                case 'Deleted Items':
+                  return (
+                      <div>
+                        <ViewDeleted/>
+                      </div>
+                  )
+
             }
 
         })()}

@@ -13,9 +13,10 @@ import ListItemText from '@mui/material/ListItemText';
 import MuiDrawer from '@mui/material/Drawer';
 import {useDashboardContext} from '../../../../contexts/DashboardContext'
 import Home from '@mui/icons-material/Home';
-import Order from '@mui/icons-material/ShoppingCart';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import CategoryIcon from '@mui/icons-material/Category';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 const drawerWidth = 260;
 
@@ -72,7 +73,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 
 
-  const sidemenuButton = ['Warehouses','All Items'];
+  const sidemenuButton = ['Warehouses','All Items', 'Deleted Items'];
 
     
 
@@ -138,6 +139,8 @@ export default function Sidemenu() {
                                         return <Home fontSize="large" />
                                     case 1:
                                         return <CategoryIcon fontSize="large" />
+                                    case 2: 
+                                        return <DeleteIcon fontSize='large' />
                                 }
                             })()}
                         </ListItemIcon>

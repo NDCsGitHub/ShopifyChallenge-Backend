@@ -13,7 +13,7 @@ export const useDashboardContext = () => {
 const DashboardContextProvider = ({children}) => {
   
   // state for opening and closing of side menus
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   //state for toggling sidemenu top
   const [sidemenuState, setSidemenuState] = useState('All Items');
