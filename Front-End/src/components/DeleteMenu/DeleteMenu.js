@@ -26,10 +26,6 @@ export default function DeleteMenu({ open, setModel, modelInfo, setNewList}) {
 
     const deleteItem = async (id) => {
 
-        const paramsDeleteComment = new URLSearchParams()
-
-        paramsDeleteComment.append('Delete_Comments', deleteComment)
-
         try{
           const deleteResp = await axios.delete(`http://localhost:5000/api/inventory/${id}`,{
               data:{

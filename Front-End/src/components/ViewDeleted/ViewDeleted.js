@@ -10,6 +10,7 @@ import Divider from '@mui/material/Divider';
 
 
 
+
 export default function ViewInventory() {
 
   const [inventory, setInventory] = useState([])
@@ -34,6 +35,45 @@ export default function ViewInventory() {
   useEffect(()=>{
     getInventoryItems()
   },[])
+
+  
+  const undelete = async(item)=>{
+      
+    try{
+        const undeletedItem =  await axios.delete(`http://localhost:5000/api/deleteditems/${item._id}`,{
+            data:{
+                Item_Name:item.Item_Name,
+                Quantity:item.Quantity,
+                Item_Description:item.Item_Description,
+            }
+        },{
+            headers:{
+                'Content-Type':'application/x-www-form-urlencoded',
+                'Access-Control-Allow-Origin':'*',
+            }
+        })  
+
+        alert(`item undeleted!, it is now in inventory`)
+        setInventory([
+            ...undeletedItem.data.newList
+        ])
+
+    }catch(error){
+        alert(error.response.data.message)
+    }
+
+
+
+
+  }
+
+
+
+
+
+
+
+
 
 
   return (
@@ -70,7 +110,7 @@ export default function ViewInventory() {
                     </CardContent>
             
                     <CardActions>
-                        <Button size="small" onClick={()=>{}}>Undelete</Button>
+                        <Button size="small" onClick={()=>{ undelete(item) }}>Undelete</Button>
                     </CardActions>
 
                     
