@@ -40,8 +40,6 @@ export default function DashBoard() {
       {(()=>{
 
             switch(sidemenuState){
-                case 'Warehouses':
-                    return <h1>this is warehouse panel</h1>
                 case 'All Items':
                     return <ViewInventory/>
                 case 'AddItems':

@@ -73,7 +73,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 
 
-  const sidemenuButton = ['Warehouses','All Items', 'Deleted Items'];
+  const sidemenuButton = ['All Items', 'Deleted Items'];
 
     
 
@@ -136,10 +136,8 @@ export default function Sidemenu() {
                             {(()=>{
                                 switch(index){
                                     case 0:
-                                        return <Home fontSize="large" />
-                                    case 1:
                                         return <CategoryIcon fontSize="large" />
-                                    case 2: 
+                                    case 1: 
                                         return <DeleteIcon fontSize='large' />
                                 }
                             })()}
