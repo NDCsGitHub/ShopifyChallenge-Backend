@@ -14,5 +14,5 @@ To run this application, you have to clone, and if you have docker installed in 
 
 docker-compose up --build
 
-Github:https://github.com/NDCsGitHub/ShopifyStuff-RubyOnRail <br>
+Github: https://github.com/NDCsGitHub/ShopifyStuff-RubyOnRail <br>
 Replit：https://replit.com/@NDC123/ShopifyChallenge-RubyOnRail
