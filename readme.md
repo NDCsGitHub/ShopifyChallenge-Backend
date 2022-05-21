@@ -5,7 +5,7 @@ please visit this repository for front end code
 
 This app has been uploaded to replit, to run the replit, simple open below link and click on start for both replits and you'll be able to use the application in the front end replit
 
-<link>https://replit.com/@NDC123/ShopifyChallenge-FrontEnd#.replit</link>
+<link>https://replit.com/@NDC123/ShopifyChallenge-FrontEnd#.replit</link> <br>
 
 <link>https://replit.com/@NDC123/ShopifyChallenge-Backend#.replit</link>
 
