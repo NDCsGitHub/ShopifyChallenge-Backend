@@ -1,5 +1,5 @@
 
-Shopify Challenge - React and Express Version
+Shopify Challenge - React and Express Version - Backend
 
 please visit this repository for front end code <br>
 https://github.com/NDCsGitHub/ShopifyChallenge-FrontEnd
