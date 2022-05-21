@@ -4,7 +4,7 @@ Shopify Challenge - React and Express Version - Backend
 please visit this repository for front end code <br>
 https://github.com/NDCsGitHub/ShopifyChallenge-FrontEnd
 
-This app has been uploaded to replit, to run the replit, simple open below 2 link and click on run for both replits and you'll be able to use the application in the front end replit <br>
+This app has been uploaded to replit, to run the replit, simple open below 2 links and click on run for both replits and you'll be able to use the application in the front end replit <br>
 https://replit.com/@NDC123/ShopifyChallenge-FrontEnd#.replit <br>
 https://replit.com/@NDC123/ShopifyChallenge-Backend#.replit
 
